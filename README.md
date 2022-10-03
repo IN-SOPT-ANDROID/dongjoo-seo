@@ -1,4 +1,4 @@
-# Write Your Name Here
+# dongjoo SEO
 
 ## This is your repository for 31st SOPT Android Development Seminar and Assignment
 
