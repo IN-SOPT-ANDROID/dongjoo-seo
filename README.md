@@ -1,4 +1,4 @@
-# Write Your Name Here
+# 서동주
 
 ## This is your repository for 31st SOPT Android Development Seminar and Assignment
 
