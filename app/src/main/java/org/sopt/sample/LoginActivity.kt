@@ -11,6 +11,7 @@ import org.sopt.sample.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     private var id: String? = null
     private var password: String? = null
@@ -27,7 +28,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     //콜백 선언
-    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private fun setResultSignUp() {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

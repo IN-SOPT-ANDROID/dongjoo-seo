@@ -12,7 +12,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.tvName.text = "이름 : " + intent.getStringExtra("id")
-        binding.tvMbti.text = "MBTI : "+ intent.getStringExtra("mbti")
+        binding.tvMbti.text = "MBTI : " + intent.getStringExtra("mbti")
 
     }
 }
