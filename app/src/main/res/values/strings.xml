@@ -8,8 +8,6 @@
     <string name="et_id">아이디를 입력해주세요</string>
     <string name="tv_id">ID</string>
     <string name="login_title">Welcome to SOPT</string>
-    <string name="mypage_name">이름 : 서동주</string>
-    <string name="mypage_mbti">MBTI : CUTE</string>
     <string name="signup_title">SIGNUP</string>
     <string name="et_mbti">MBTI를 입력해주세요</string>
     <string name="tv_mbti">MBTI</string>
