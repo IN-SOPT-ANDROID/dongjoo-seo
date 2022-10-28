@@ -22,6 +22,23 @@ class HomeFragment : Fragment() {
     private val binding: FragmentHomeBinding
         get() = requireNotNull(_binding) { "바인딩 객체 생성하고 써라" }
 
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val adapter = RepoAdapter(requireContext())
+        binding.rvRepos.adapter = adapter
+        adapter.setRepoList(mockRepoList)
+    }
+
     private val mockRepoList = listOf<Repo>(
         Repo(
             image = R.drawable.github,
@@ -75,23 +92,6 @@ class HomeFragment : Fragment() {
         )
 
     )
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val adapter = RepoAdapter(requireContext())
-        binding.rvRepos.adapter = adapter
-        adapter.setRepoList(mockRepoList)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

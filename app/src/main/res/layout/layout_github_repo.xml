@@ -12,13 +12,14 @@
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/github" />
+        tools:src="@drawable/github"
+        android:contentDescription="githubRepo" />
 
     <TextView
         android:id="@+id/tv_github_repo_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Repo name"
+        tools:text="Repo name"
         android:layout_marginEnd="40dp"
         app:layout_constraintBottom_toTopOf="@id/tv_github_repo_author"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +29,7 @@
         android:id="@+id/tv_github_repo_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tamazzang"
+        tools:text="tamazzang"
         app:layout_constraintBottom_toBottomOf="@id/img_github_repo"
         app:layout_constraintEnd_toEndOf="@id/tv_github_repo_name"
         app:layout_constraintTop_toBottomOf="@id/tv_github_repo_name" />
