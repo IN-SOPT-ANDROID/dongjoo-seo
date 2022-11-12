@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import org.sopt.sample.R
+import androidx.fragment.app.viewModels
 import org.sopt.sample.databinding.FragmentHomeBinding
-import org.sopt.sample.home.adapter.RepoAdapter
-import org.sopt.sample.home.data.Repo
+import org.sopt.sample.home.adapter.RepoListAdapter
+import org.sopt.sample.home.data.RepoData
 
 /*
 * onCreateView : View 생성 로직
@@ -17,81 +17,29 @@ import org.sopt.sample.home.data.Repo
 * */
 
 class HomeFragment : Fragment() {
-    //    ViewBinding은 onCreateView에서 생성 후 on DestroyView에서 null 로 직접 해제(Fragment 생명주기가 View 생명주기보다 길다.)
+    private val viewModel by viewModels<ViewModel>()
+    //ViewBinding은 onCreateView에서 생성 후 on DestroyView에서 null 로 직접 해제(Fragment 생명주기가 View 생명주기보다 길다.)
     private var _binding: FragmentHomeBinding? = null
-    private val binding: FragmentHomeBinding
-        get() = requireNotNull(_binding) { "바인딩 객체 생성하고 써라" }
+    private val binding get() = requireNotNull(_binding) { "바인딩 초기화 에러 발생" }
 
+    private lateinit var repoListAdapter: RepoListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = RepoAdapter(requireContext())
-        binding.rvRepos.adapter = adapter
-        adapter.setRepoList(mockRepoList)
-    }
+        repoListAdapter = RepoListAdapter(RepoData.Title("tamazzang"))
+        binding.rvRepos.adapter = repoListAdapter
+        repoListAdapter.submitList(viewModel.mockRepoList)
+}
 
-    private val mockRepoList = listOf<Repo>(
-        Repo(
-            image = R.drawable.github,
-            name = "A",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "B",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "C",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "D",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "E",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "F",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "G",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "H",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "I",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "J",
-            author = "123"
-        )
-
-    )
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
