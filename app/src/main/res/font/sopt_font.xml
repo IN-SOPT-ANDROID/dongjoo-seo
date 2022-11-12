@@ -3,11 +3,11 @@
     <font
         android:font="@font/pretendard_black"
         android:fontStyle="normal"
-        android:fontWeight="800"/>
+        android:fontWeight="800" />
     <font
         android:font="@font/pretendard_extrabold"
         android:fontStyle="normal"
-        android:fontWeight="800"/>
+        android:fontWeight="800" />
     <font
         android:font="@font/pretendard_bold"
         android:fontStyle="normal"
