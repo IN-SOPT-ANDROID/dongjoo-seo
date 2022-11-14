@@ -10,37 +10,42 @@ import org.sopt.sample.home.SearchFragment
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
+
+    private val homeFragment by lazy { HomeFragment() }
+    private val galleryFragment by lazy { GalleryFragment() }
+    private val searchFragment by lazy { SearchFragment() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_home)
 
-        clickBnv()
-
-//        val currentFragment = supportFragmentManager.findFragmentById(R.id.home_container)
-//        if (currentFragment == null) {
-//            supportFragmentManager.beginTransaction()
-//                .add(R.id.home_container, HomeFragment.newInstance())
-//                .commit()
-//        }
+        initClickEvent()
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.home_container, fragment)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.home_container, fragment)
             .addToBackStack(null)
             .commit()
     }
 
-    private fun clickBnv() {
-        binding.bnvHome.run {
-            setOnItemSelectedListener { Item ->
-                when (Item.itemId) {
-                    R.id.menu_home -> replaceFragment(HomeFragment())
-                    R.id.menu_gallery -> replaceFragment(GalleryFragment())
-                    R.id.menu_search -> replaceFragment(SearchFragment())
+    private fun initClickEvent() {
+        binding.bnvHome.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.menu_home -> {
+                    replaceFragment(homeFragment)
                 }
-                true
+                R.id.menu_gallery -> {
+                    replaceFragment(galleryFragment)
+                }
+                R.id.menu_search -> {
+                    replaceFragment(searchFragment)
+                }
             }
-            selectedItemId = R.id.bnv_home
+            true
         }
+        binding.bnvHome.selectedItemId = R.id.menu_home
     }
 }
