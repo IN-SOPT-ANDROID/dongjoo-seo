@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.sopt.sample.databinding.FragmentGalleryBinding
 
-
 class GalleryFragment : Fragment() {
     private var _binding: FragmentGalleryBinding? = null
-    private val binding: FragmentGalleryBinding
-    get() = requireNotNull(_binding) { "바인딩 객체 생성하고 써라" }
+    private val binding get() = requireNotNull(_binding) { "binding이 생성되지 않았습니다." }
 
     override fun onCreateView(
         inflater: LayoutInflater,
