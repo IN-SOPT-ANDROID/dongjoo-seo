@@ -1,4 +1,4 @@
-package org.sopt.sample.home.data.remote
+package org.sopt.sample.data.remote
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ResponseFollowerListDTO(
     @SerialName("data")
-    val data: Data,
+    val followerData: FollowerData,
     @SerialName("page")
     val page: Int,
     @SerialName("per_page")
@@ -19,7 +19,7 @@ data class ResponseFollowerListDTO(
     val total_pages: Int
 ) {
     @Serializable
-    data class Data(
+    data class FollowerData(
         @SerialName("id")
         val id: Int,
         @SerialName("email")
