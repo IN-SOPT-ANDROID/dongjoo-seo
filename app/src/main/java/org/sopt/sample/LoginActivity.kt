@@ -8,8 +8,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import org.sopt.sample.data.remote.*
 import org.sopt.sample.databinding.ActivityLoginBinding
-import org.sopt.sample.home.data.remote.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
