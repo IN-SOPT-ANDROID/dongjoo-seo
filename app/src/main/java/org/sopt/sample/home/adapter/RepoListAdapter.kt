@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import org.sopt.sample.databinding.LayoutGithubRepoBinding
 import org.sopt.sample.databinding.LayoutRvHeaderBinding
-import org.sopt.sample.home.data.RepoData
+import org.sopt.sample.data.RepoData
 //import org.sopt.sample.util.loadCircleImage
 
 const val HEADER = 0

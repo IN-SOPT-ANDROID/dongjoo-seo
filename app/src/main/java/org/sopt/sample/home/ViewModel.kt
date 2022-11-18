@@ -2,7 +2,7 @@ package org.sopt.sample.home
 
 import androidx.lifecycle.ViewModel
 import org.sopt.sample.R
-import org.sopt.sample.home.data.RepoData
+import org.sopt.sample.data.RepoData
 
 class ViewModel() : ViewModel() {
     val mockRepoList = listOf(

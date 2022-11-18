@@ -1,4 +1,4 @@
-package org.sopt.sample.home.data
+package org.sopt.sample.data
 
 import androidx.annotation.DrawableRes
 
