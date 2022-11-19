@@ -5,15 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import org.sopt.sample.data.remote.RequestSignUpDTO
 import org.sopt.sample.data.remote.ResponseSignUpDTO
 import org.sopt.sample.data.remote.ServicePool
 import org.sopt.sample.databinding.ActivitySignUpBinding
+import org.sopt.sample.presentation.login.LoginActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.math.sign
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
