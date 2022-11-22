@@ -1,36 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/img_github_repo"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        app:layout_constraintDimensionRatio="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/github" />
+    <data>
+        <!-- <variable
+             name="data"
+             type="org.sopt.sample.data.GithubData.RepoInfo" />-->
+    </data>
 
-    <TextView
-        android:id="@+id/tv_github_repo_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Repo name"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toTopOf="@id/tv_github_repo_author"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/img_github_repo" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_github_repo_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tamazzang"
-        app:layout_constraintBottom_toBottomOf="@id/img_github_repo"
-        app:layout_constraintEnd_toEndOf="@id/tv_github_repo_name"
-        app:layout_constraintTop_toBottomOf="@id/tv_github_repo_name" />
+        <ImageView
+            android:id="@+id/img_github_repo"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="20dp"
+            android:contentDescription="githubRepo"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/github" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_github_repo_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/pretendard_extrabold"
+            app:layout_constraintBottom_toTopOf="@id/tv_github_repo_author"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_github_repo"
+            tools:text="Repo name" />
+
+        <TextView
+            android:id="@+id/tv_github_repo_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            app:layout_constraintBottom_toBottomOf="@id/img_github_repo"
+            app:layout_constraintEnd_toEndOf="@id/tv_github_repo_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_github_repo_name"
+            tools:text="tamazzang" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

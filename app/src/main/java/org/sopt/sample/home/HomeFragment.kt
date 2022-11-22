@@ -1,80 +1,31 @@
 package org.sopt.sample.home
 
+import android.app.Service
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import org.sopt.sample.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import org.sopt.sample.data.remote.ReqresFollowerService
+import org.sopt.sample.data.remote.ResponseFollowerListDTO
+import org.sopt.sample.data.remote.ServicePool
 import org.sopt.sample.databinding.FragmentHomeBinding
-import org.sopt.sample.home.adapter.RepoAdapter
-import org.sopt.sample.home.data.Repo
+import org.sopt.sample.home.adapter.RfollowersAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-/*
-* onCreateView : View 생성 로직
-* onViewCreated : 생성된 뷰 구조 활용해서 Fragment에 사용자 인터렉션 구현하는 구현부
-* -> onViewCreated에서 binding 객체를 활용하여 뷰의 UI 구현
-* */
 
 class HomeFragment : Fragment() {
-    //    ViewBinding은 onCreateView에서 생성 후 on DestroyView에서 null 로 직접 해제(Fragment 생명주기가 View 생명주기보다 길다.)
+
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding
-        get() = requireNotNull(_binding) { "바인딩 객체 생성하고 써라" }
+        get() = requireNotNull(_binding) { "바인딩 초기화 에러" }
 
-    private val mockRepoList = listOf<Repo>(
-        Repo(
-            image = R.drawable.github,
-            name = "A",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "B",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "C",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "D",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "E",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "F",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "G",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "H",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "I",
-            author = "123"
-        ),
-        Repo(
-            image = R.drawable.github,
-            name = "J",
-            author = "123"
-        )
-
-    )
+    private val followersViewModel by viewModels<FollowersViewModel>()
+    private lateinit var followerListAdapter: RfollowersAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -84,22 +35,32 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = RepoAdapter(requireContext())
-        binding.rvRepos.adapter = adapter
-        adapter.setRepoList(mockRepoList)
+
+        setFollowerList()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+    private fun setFollowerList() {
+        val setfollowerSerive = ServicePool.reqresFollowerService
 
-    companion object {
-        fun newInstance(): HomeFragment {
-            return HomeFragment()
-        }
+        setfollowerSerive
+            .getFollower(1)//여기서 페이지 수 기준으로 받아서 일단 1로 받았는데 이래도 되는걸까
+            .enqueue(object : Callback<ResponseFollowerListDTO>{
+            override fun onResponse(
+                call: Call<ResponseFollowerListDTO>,
+                response: Response<ResponseFollowerListDTO>
+            ) {
+                if(response.isSuccessful){
+                    Log.e("reqres 서버통신 성공", "followers success")
+                    followerListAdapter = RfollowersAdapter(requireContext())
+                    binding.rvFollowers.adapter = followerListAdapter
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseFollowerListDTO>, t: Throwable) {
+                Log.e("reqres 서버통신 실패", "followers failed")
+            }
+        })
     }
 }

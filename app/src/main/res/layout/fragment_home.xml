@@ -6,11 +6,28 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_repos"
+        android:id="@+id/rv_followers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/layout_github_repo"/>
+        tools:listitem="@layout/layout_follower_grid" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical"-->
+<!--    tools:context=".HomeActivity">-->
+
+<!--    <GridView-->
+<!--        android:id="@+id/followersGridView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:numColumns="2"-->
+<!--        android:padding="10dp" />-->
+
+<!--</LinearLayout>-->

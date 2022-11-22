@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:fontFamily="@font/pretendard_black"
         android:text="@string/login_title"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -19,24 +20,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_id_title"
+        android:id="@+id/tv_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
-        android:text="@string/tv_id"
+        android:fontFamily="@font/pretendard_extrabold"
+        android:text="@string/tv_email"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <EditText
-        android:id="@+id/et_id"
+        android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="15dp"
+        android:fontFamily="@font/pretendard_medium"
         android:hint="@string/et_id"
-        app:layout_constraintTop_toBottomOf="@+id/tv_id_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
     <TextView
         android:id="@+id/tv_pw"
@@ -44,10 +47,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/pretendard_extrabold"
         android:text="@string/tv_pw"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_id" />
+        app:layout_constraintTop_toBottomOf="@id/et_email" />
 
     <EditText
         android:id="@+id/et_pw"
@@ -55,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="15dp"
+        android:fontFamily="@font/pretendard_medium"
         android:hint="@string/et_pw"
         android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@+id/tv_pw" />
@@ -66,9 +71,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="30dp"
+        android:fontFamily="@font/pretendard_extrabold"
         android:text="@string/btn_login"
         android:textSize="15sp"
-        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/et_pw" />
 
     <Button
@@ -77,6 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/pretendard_extrabold"
         android:text="@string/btn_signup"
         android:textSize="15sp"
         android:textStyle="bold"
