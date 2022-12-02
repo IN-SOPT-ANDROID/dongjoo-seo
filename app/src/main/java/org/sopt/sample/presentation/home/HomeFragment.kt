@@ -1,6 +1,5 @@
-package org.sopt.sample.home
+package org.sopt.sample.presentation.home
 
-import android.app.Service
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import org.sopt.sample.data.remote.ReqresFollowerService
 import org.sopt.sample.data.remote.ResponseFollowerListDTO
 import org.sopt.sample.data.remote.ServicePool
 import org.sopt.sample.databinding.FragmentHomeBinding
-import org.sopt.sample.home.adapter.RfollowersAdapter
+import org.sopt.sample.presentation.home.viewmodels.FollowersViewModel
+import org.sopt.sample.presentation.home.adapter.RfollowersAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,6 +54,8 @@ class HomeFragment : Fragment() {
                     Log.e("reqres 서버통신 성공", "followers success")
                     followerListAdapter = RfollowersAdapter(requireContext())
                     binding.rvFollowers.adapter = followerListAdapter
+
+
                 }
             }
 

@@ -1,4 +1,4 @@
-package org.sopt.sample.home.adapter
+package org.sopt.sample.presentation.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -30,9 +30,11 @@ class RfollowersAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
+    //ViewHolder 생성하는 함수, 최초 생성 횟 수만큼만 호출
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return FollowerViewHolder(LayoutFollowerGridBinding.inflate(inflater, parent, false))
     }
+    //만들어진 ViewHolder에 데이터를 바인딩하는 함수 (position ; 리스트 상 순서)
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position : Int){
         if (holder is FollowerViewHolder){
             holder.onBind(FollowerListData[position])

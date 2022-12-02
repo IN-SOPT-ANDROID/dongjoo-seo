@@ -1,4 +1,4 @@
-package org.sopt.sample.home
+package org.sopt.sample.presentation.home.viewmodels
 
 import androidx.lifecycle.ViewModel
 import org.sopt.sample.data.remote.ResponseFollowerListDTO
