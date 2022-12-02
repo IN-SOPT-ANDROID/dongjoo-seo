@@ -1,9 +1,9 @@
 package org.sopt.sample.presentation.login.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.sopt.sample.data.remote.AuthService
 import org.sopt.sample.data.remote.RequestLoginDTO
 import org.sopt.sample.data.remote.ResponseLoginDTO
 import org.sopt.sample.data.remote.ServicePool
@@ -15,13 +15,15 @@ import retrofit2.Response
 class LoginViewModel : ViewModel() {
     private val _loginResult: MutableLiveData<ResponseLoginDTO> = MutableLiveData()
     val loginResult: LiveData<ResponseLoginDTO> = _loginResult
+    private val _errorMessage: MutableLiveData<Int> = MutableLiveData()
+    val errorMessage: LiveData<Int> = _errorMessage
 
     private val loginService = ServicePool.authService
 
-    fun login(email: String, password: String) {
+    fun login(id: String, password: String) {
         loginService.login(
             RequestLoginDTO(
-                email,
+                id,
                 password
             )
         ).enqueue(object: Callback<ResponseLoginDTO>{
@@ -31,11 +33,13 @@ class LoginViewModel : ViewModel() {
             ) {
                 if(response.isSuccessful){
                     _loginResult.value = response.body()
+                } else{
+                    _errorMessage.value = response.body()?.status
                 }
             }
 
             override fun onFailure(call: Call<ResponseLoginDTO>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("LOGIN-RESPONSE/FAILURE", "login 서버통신 실패, ${t.message}")
             }
         })
     }
