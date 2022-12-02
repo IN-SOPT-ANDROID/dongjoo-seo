@@ -4,9 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import org.sopt.sample.databinding.ActivityHomeBinding
-import org.sopt.sample.home.GalleryFragment
-import org.sopt.sample.home.HomeFragment
-import org.sopt.sample.home.SearchFragment
+import org.sopt.sample.presentation.home.GalleryFragment
+import org.sopt.sample.presentation.home.HomeFragment
+import org.sopt.sample.presentation.home.SearchFragment
+import org.sopt.sample.presentation.myPage.MyPageFragment
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -14,6 +15,7 @@ class HomeActivity : AppCompatActivity() {
     private val homeFragment by lazy { HomeFragment() }
     private val galleryFragment by lazy { GalleryFragment() }
     private val searchFragment by lazy { SearchFragment() }
+    private val myPageFragment by lazy { MyPageFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,9 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.menu_search -> {
                     replaceFragment(searchFragment)
+                }
+                R.id.menu_mypage -> {
+                    replaceFragment(myPageFragment)
                 }
             }
             true
