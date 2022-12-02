@@ -33,26 +33,61 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Assign the component to a property in the binding class.
-        viewModel.signUpResult.observe(this) {
-            checkSignUp()
-            val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
-            startActivity(intent)
+        binding.btnChecksignup.setOnClickListener {
+            viewModel.signUp(
+                binding.etId.text.toString(),
+                binding.etPw.text.toString(),
+                binding.etName.text.toString()
+            )
+            // Assign the component to a property in the binding class.
+            viewModel.signUpResult.observe(this) {
+                checkSignUp()
+                val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                startActivity(intent)
+            }
+            viewModel.errorMessage.observe(this) {
+                showToast("$it 오류 발생")
+            }
         }
-        viewModel.errorMessage.observe(this) {
-            showToast("$it 오류 발생")
-        }
-
     }
 
     //id, pw 검사 함수
-    private fun checkSignUp(){
-        val regexId = Regex("^[A-Za-z0-9]{6,10}\$")
-        val regexPw = Regex("^.*(?=^.{6,12}\$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#\$%^&+=]).*\$")
+    private fun checkSignUp() {
 
-        if (binding.etId.text.matches(regexId) && binding.etPw.text.matches(regexPw)) {
+        if (validId() && validPw()) {
             binding.btnChecksignup.setBackgroundColor(getColor(R.color.purple_200))
             binding.btnChecksignup.isEnabled = true
+        }
+    }
+
+    private fun validId(): Boolean {
+        val id: String = binding.layoutEtId.editText?.text.toString()
+        val regexId = Regex("^[A-Za-z0-9]{6,10}\$")
+
+        return if (id.isEmpty()) {
+            binding.layoutEtId.error = "아이디를 입력해주세요"
+            false
+        } else if (!id.matches(regexId)) {
+            binding.layoutEtId.error = "아이디 형식이 잘못되었습니다."
+            false
+        } else {
+            binding.layoutEtId.error = null
+            true
+        }
+    }
+    private fun validPw(): Boolean {
+        val pw: String = binding.layoutEtPw.editText?.text.toString()
+        val regexPw = Regex("^.*(?=^.{6,12}\$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#\$%^&+=]).*\$")
+
+        return if (pw.isEmpty()) {
+            binding.layoutEtPw.error = "비밀번호를 입력해주세요"
+            false
+        } else if (!pw.matches(regexPw)) {
+            binding.layoutEtPw.error = "비밀번호 형식이 잘못되었습니다."
+            false
+        } else {
+            binding.layoutEtPw.error = null
+            true
         }
     }
 }
