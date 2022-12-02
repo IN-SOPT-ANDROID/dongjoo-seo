@@ -1,4 +1,4 @@
-package org.sopt.sample.home
+package org.sopt.sample.presentation.home
 
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +10,8 @@ import androidx.fragment.app.viewModels
 import org.sopt.sample.data.remote.ResponseFollowerListDTO
 import org.sopt.sample.data.remote.ServicePool
 import org.sopt.sample.databinding.FragmentHomeBinding
-import org.sopt.sample.home.adapter.RfollowersAdapter
+import org.sopt.sample.presentation.home.viewmodels.FollowersViewModel
+import org.sopt.sample.presentation.home.adapter.RfollowersAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
