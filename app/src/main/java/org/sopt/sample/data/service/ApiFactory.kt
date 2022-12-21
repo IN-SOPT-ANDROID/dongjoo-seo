@@ -5,30 +5,33 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.sopt.sample.data.AuthInterceptor
+import org.sopt.sample.data.service.AuthInterceptor
+import org.sopt.sample.data.service.AuthService
+import org.sopt.sample.data.service.MusicService
+import org.sopt.sample.data.service.ReqresFollowerService
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 object ApiFactory {
 
     private val client by lazy {
         OkHttpClient.Builder()
-            .addInterceptor(AuthInterceptor())
+//            .addInterceptor(AuthInterceptor())
             .addInterceptor(
                 HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
                 }
             ).build()
     }
+
     //by lazy 사용 이유 : 내부 스레드를 동기화해서 데이터를 가져오기 -> 조금 더 안전하게 객체 사용
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("http://3.39.169.52:3000/")
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .client(client)
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
+
     inline fun <reified T> create(): T = retrofit.create<T>(T::class.java)
 
 
@@ -39,7 +42,8 @@ object ApiFactory {
             .client(client)
             .build()
     }
-    inline fun <reified T> createReqres() : T = reqresRetrofit.create<T>(T::class.java)
+
+    inline fun <reified T> createReqres(): T = reqresRetrofit.create<T>(T::class.java)
 
 
     val retrofitMusic: Retrofit by lazy {
@@ -49,7 +53,8 @@ object ApiFactory {
             .client(client)
             .build()
     }
-    inline fun <reified T> createMusic() : T = retrofitMusic.create<T>(T::class.java)
+
+    inline fun <reified T> createMusic(): T = retrofitMusic.create<T>(T::class.java)
 }
 
 object ServicePool {

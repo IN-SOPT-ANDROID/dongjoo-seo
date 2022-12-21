@@ -1,7 +1,8 @@
-package org.sopt.sample.data.remote
+package org.sopt.sample.data.service
 
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.sopt.sample.data.model.response.ResponseGetMusicDTO
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Multipart

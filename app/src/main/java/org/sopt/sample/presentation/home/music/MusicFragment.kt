@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.sopt.sample.databinding.FragmentMusicBinding
-import org.sopt.sample.databinding.FragmentSearchBinding
 
 class MusicFragment : Fragment() {
     private var _binding: FragmentMusicBinding? = null

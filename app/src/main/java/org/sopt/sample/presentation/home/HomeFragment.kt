@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import org.sopt.sample.data.remote.ResponseFollowerListDTO
+import org.sopt.sample.data.model.response.ResponseFollowerListDTO
 import org.sopt.sample.data.remote.ServicePool
 import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.presentation.home.viewmodels.FollowersViewModel

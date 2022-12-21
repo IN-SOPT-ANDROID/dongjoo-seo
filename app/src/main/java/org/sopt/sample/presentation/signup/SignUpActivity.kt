@@ -3,24 +3,14 @@ package org.sopt.sample.presentation.signup
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import org.sopt.sample.HomeActivity
 import org.sopt.sample.R
-import org.sopt.sample.SignUpInfo
-import org.sopt.sample.data.remote.AuthService
-import org.sopt.sample.data.remote.RequestSignUpDTO
-import org.sopt.sample.data.remote.ResponseSignUpDTO
-import org.sopt.sample.data.remote.ServicePool
+import org.sopt.sample.data.service.AuthService
 import org.sopt.sample.databinding.ActivitySignUpBinding
 import org.sopt.sample.presentation.login.LoginActivity
 import org.sopt.sample.presentation.signup.viewmodels.SignUpViewModel
 import org.sopt.sample.showToast
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity() {
     //viewmodel 컴포넌트 가져오기

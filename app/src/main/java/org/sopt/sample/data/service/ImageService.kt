@@ -1,4 +1,4 @@
-package org.sopt.sample.data.remote
+package org.sopt.sample.data.service
 
 import okhttp3.MultipartBody
 import retrofit2.Call
