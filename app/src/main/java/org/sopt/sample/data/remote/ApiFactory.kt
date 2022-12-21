@@ -5,6 +5,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.sopt.sample.data.AuthInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
@@ -13,6 +14,7 @@ object ApiFactory {
 
     private val client by lazy {
         OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor())
             .addInterceptor(
                 HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
@@ -23,23 +25,35 @@ object ApiFactory {
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("http://3.39.169.52:3000/")
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .client(client)
             .build()
     }
+    inline fun <reified T> create(): T = retrofit.create<T>(T::class.java)
+
 
     val reqresRetrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("https://reqres.in/")
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .client(client)
             .build()
     }
-
-    inline fun <reified T> create(): T = retrofit.create<T>(T::class.java)
     inline fun <reified T> createReqres() : T = reqresRetrofit.create<T>(T::class.java)
 
+
+    val retrofitMusic: Retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl("http://3.34.53.11:8080")
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .client(client)
+            .build()
+    }
+    inline fun <reified T> createMusic() : T = retrofitMusic.create<T>(T::class.java)
 }
 
 object ServicePool {
     val authService = ApiFactory.create<AuthService>()
     val reqresFollowerService = ApiFactory.createReqres<ReqresFollowerService>()
+    val musicService = ApiFactory.createMusic<MusicService>()
 }

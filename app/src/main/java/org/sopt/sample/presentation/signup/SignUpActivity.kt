@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
 import org.sopt.sample.HomeActivity
 import org.sopt.sample.R
 import org.sopt.sample.SignUpInfo
@@ -29,9 +30,9 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_sign_up)
 
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
 
         binding.btnChecksignup.setOnClickListener {
             viewModel.signUp(
