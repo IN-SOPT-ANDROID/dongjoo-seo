@@ -1,10 +1,9 @@
 package org.sopt.sample.presentation.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import org.sopt.sample.HomeActivity
 import org.sopt.sample.databinding.ActivityLoginBinding
 import org.sopt.sample.presentation.login.viewmodels.LoginViewModel
@@ -12,7 +11,7 @@ import org.sopt.sample.presentation.signup.SignUpActivity
 import org.sopt.sample.showToast
 
 class LoginActivity : AppCompatActivity() {
-    //LiveData가 저장되어 있는 ViewModel
+    // LiveData가 저장되어 있는 ViewModel
     private val viewModel by viewModels<LoginViewModel>()
 
     private lateinit var binding: ActivityLoginBinding

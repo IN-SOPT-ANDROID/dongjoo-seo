@@ -5,7 +5,6 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.sopt.sample.data.service.AuthInterceptor
 import org.sopt.sample.data.service.AuthService
 import org.sopt.sample.data.service.MusicService
 import org.sopt.sample.data.service.ReqresFollowerService
@@ -23,7 +22,7 @@ object ApiFactory {
             ).build()
     }
 
-    //by lazy 사용 이유 : 내부 스레드를 동기화해서 데이터를 가져오기 -> 조금 더 안전하게 객체 사용
+    // by lazy 사용 이유 : 내부 스레드를 동기화해서 데이터를 가져오기 -> 조금 더 안전하게 객체 사용
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("http://3.39.169.52:3000/")
@@ -34,7 +33,6 @@ object ApiFactory {
 
     inline fun <reified T> create(): T = retrofit.create<T>(T::class.java)
 
-
     val reqresRetrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("https://reqres.in/")
@@ -44,7 +42,6 @@ object ApiFactory {
     }
 
     inline fun <reified T> createReqres(): T = reqresRetrofit.create<T>(T::class.java)
-
 
     val retrofitMusic: Retrofit by lazy {
         Retrofit.Builder()

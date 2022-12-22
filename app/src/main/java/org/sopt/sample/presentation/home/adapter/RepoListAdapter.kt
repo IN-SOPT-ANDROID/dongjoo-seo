@@ -1,16 +1,16 @@
 package org.sopt.sample.presentation.home.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import org.sopt.sample.data.RepoData
 import org.sopt.sample.databinding.LayoutGithubRepoBinding
 import org.sopt.sample.databinding.LayoutRvHeaderBinding
-import org.sopt.sample.data.RepoData
-//import org.sopt.sample.util.loadCircleImage
+
+// import org.sopt.sample.util.loadCircleImage
 
 const val HEADER = 0
 const val ITEM = 1
@@ -18,9 +18,7 @@ const val ITEM = 1
 class RepoListAdapter(private val title: RepoData.Title) :
     ListAdapter<RepoData.RepoInfo, RepoListAdapter.GithubViewHolder>(
         DiffutilCallback()
-    )
-{
-
+    ) {
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
@@ -34,19 +32,19 @@ class RepoListAdapter(private val title: RepoData.Title) :
         abstract fun onBind(input: RepoInput)
     }
 
-    class HeaderViewHolder(binding: LayoutRvHeaderBinding) : GithubViewHolder(binding){
+    class HeaderViewHolder(binding: LayoutRvHeaderBinding) : GithubViewHolder(binding) {
         override fun onBind(input: RepoInput) {
-            if (input is RepoInput.Title){
+            if (input is RepoInput.Title) {
                 (binding as LayoutRvHeaderBinding).tvRvHeader.text = input.data.title
             }
         }
     }
 
-    class RepoListViewHolder(binding: LayoutGithubRepoBinding) : GithubViewHolder(binding){
+    class RepoListViewHolder(binding: LayoutGithubRepoBinding) : GithubViewHolder(binding) {
         override fun onBind(input: RepoInput) {
-            if(input is RepoInput.RepoList){
-                with(binding as LayoutGithubRepoBinding){
-                    //이미지 추가
+            if (input is RepoInput.RepoList) {
+                with(binding as LayoutGithubRepoBinding) {
+                    // 이미지 추가
 //                    imgGithubRepo.loadCircleImage(input.data.image)
                     tvGithubRepoName.text = input.data.name
                     tvGithubRepoAuthor.text = input.data.author
@@ -56,23 +54,26 @@ class RepoListAdapter(private val title: RepoData.Title) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubViewHolder {
-        return when (viewType){
+        return when (viewType) {
             HEADER -> {
                 val binding = LayoutRvHeaderBinding.inflate(
                     LayoutInflater.from(parent.context),
-                    parent, false
+                    parent,
+                    false
                 )
                 HeaderViewHolder(binding)
             }
             else -> {
                 val binding = LayoutGithubRepoBinding.inflate(
                     LayoutInflater.from(parent.context),
-                    parent, false
+                    parent,
+                    false
                 )
                 RepoListViewHolder(binding)
             }
         }
     }
+
     override fun getItemCount(): Int = currentList.size + 1
 
     private fun RepoData.Title.toInput() = RepoInput.Title(this)
@@ -110,5 +111,4 @@ class RepoListAdapter(private val title: RepoData.Title) :
             newItem: RepoData.RepoInfo
         ) = oldItem == newItem
     }
-
 }

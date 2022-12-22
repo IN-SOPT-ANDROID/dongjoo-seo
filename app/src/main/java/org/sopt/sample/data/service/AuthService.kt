@@ -12,11 +12,10 @@ interface AuthService {
     @POST("api/user/signin")
     fun login(
         @Body request: RequestLoginDTO
-    ) : Call<ResponseLoginDTO>
-
+    ): Call<ResponseLoginDTO>
 
     @POST("api/user/siginup")
     fun signup(
         @Body request: RequestSignUpDTO
-    ) : Call<ResponseSignUpDTO>
+    ): Call<ResponseSignUpDTO>
 }
